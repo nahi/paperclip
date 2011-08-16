@@ -6,13 +6,18 @@ gem "aws-s3", :require => "aws/s3"
 gem "bundler"
 gem "cocaine"
 gem "fog"
-gem "jruby-openssl", :platform => :jruby
 gem "mime-types"
 gem "mocha"
 gem "rake"
 gem "rdoc", :require => false
 gem "shoulda"
-gem "sqlite3", "~>1.3.4"
+if defined?(JRUBY_VERSION)
+  gem "jruby-openssl"
+  gem 'activerecord-jdbc-adapter'
+  gem 'jdbc-sqlite3'
+else
+  gem "sqlite3", "~>1.3.4"
+end
 
 # This is for Rails 3.1
 gem "sprockets", "~> 2.0.0.beta.13", :require => false
